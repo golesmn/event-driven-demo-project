@@ -1,0 +1,53 @@
+include:
+- access_management/*
+kind: ArchiveUploadSpec
+name: access-management-bMbK
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: rabbitmq-consumer-5af5992b-6e33-438a-81a3-82ebb9b55dea
+spec:
+  deployment:
+    checksum: {}
+  environment:
+    name: python
+    namespace: ""
+  source:
+    checksum: {}
+    type: url
+    url: archive://access-management-bMbK
+status:
+  buildstatus: pending
+  lastUpdateTimestamp: "2025-04-29T07:53:45Z"
+
+---
+apiVersion: fission.io/v1
+kind: Function
+metadata:
+  creationTimestamp: null
+  name: rabbitmq-consumer
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+      MaxScale: 0
+      MinScale: 0
+      SpecializationTimeout: 120
+      TargetCPUPercent: 0
+    StrategyType: execution
+  concurrency: 500
+  environment:
+    name: python
+    namespace: ""
+  functionTimeout: 60
+  idletimeout: 120
+  package:
+    functionName: main.consumer
+    packageref:
+      name: rabbitmq-consumer-5af5992b-6e33-438a-81a3-82ebb9b55dea
+      namespace: ""
+  requestsPerPod: 1
+  resources: {}

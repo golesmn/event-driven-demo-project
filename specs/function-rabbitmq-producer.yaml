@@ -1,0 +1,53 @@
+include:
+- access_management/*
+kind: ArchiveUploadSpec
+name: access-management-0eQd
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: rabbitmq-producer-508e6a88-443e-49b5-8b0f-8df763812330
+spec:
+  deployment:
+    checksum: {}
+  environment:
+    name: python
+    namespace: ""
+  source:
+    checksum: {}
+    type: url
+    url: archive://access-management-0eQd
+status:
+  buildstatus: pending
+  lastUpdateTimestamp: "2025-04-29T07:53:58Z"
+
+---
+apiVersion: fission.io/v1
+kind: Function
+metadata:
+  creationTimestamp: null
+  name: rabbitmq-producer
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+      MaxScale: 0
+      MinScale: 0
+      SpecializationTimeout: 120
+      TargetCPUPercent: 0
+    StrategyType: execution
+  concurrency: 500
+  environment:
+    name: python
+    namespace: ""
+  functionTimeout: 60
+  idletimeout: 120
+  package:
+    functionName: main.main
+    packageref:
+      name: rabbitmq-producer-508e6a88-443e-49b5-8b0f-8df763812330
+      namespace: ""
+  requestsPerPod: 1
+  resources: {}
