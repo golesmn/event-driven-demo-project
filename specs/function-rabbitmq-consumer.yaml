@@ -1,14 +1,14 @@
 include:
 - access_management/*
 kind: ArchiveUploadSpec
-name: access-management-bMbK
+name: access-management-ItMz
 
 ---
 apiVersion: fission.io/v1
 kind: Package
 metadata:
   creationTimestamp: null
-  name: rabbitmq-consumer-5af5992b-6e33-438a-81a3-82ebb9b55dea
+  name: rabbitmq-consumer-2750f1b9-b4fb-4556-af3f-4e7797f2f6b4
 spec:
   deployment:
     checksum: {}
@@ -18,10 +18,10 @@ spec:
   source:
     checksum: {}
     type: url
-    url: archive://access-management-bMbK
+    url: archive://access-management-ItMz
 status:
   buildstatus: pending
-  lastUpdateTimestamp: "2025-04-29T07:53:45Z"
+  lastUpdateTimestamp: "2025-05-02T03:31:15Z"
 
 ---
 apiVersion: fission.io/v1
@@ -47,7 +47,33 @@ spec:
   package:
     functionName: main.consumer
     packageref:
-      name: rabbitmq-consumer-5af5992b-6e33-438a-81a3-82ebb9b55dea
+      name: rabbitmq-consumer-2750f1b9-b4fb-4556-af3f-4e7797f2f6b4
       namespace: ""
   requestsPerPod: 1
   resources: {}
+
+---
+include:
+- access_management/*
+kind: ArchiveUploadSpec
+name: access-management-jSXj
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: rabbitmq-consumer-28c2de57-b0bf-4795-83b1-b9003faafe15
+spec:
+  deployment:
+    checksum: {}
+  environment:
+    name: python
+    namespace: ""
+  source:
+    checksum: {}
+    type: url
+    url: archive://access-management-jSXj
+status:
+  buildstatus: pending
+  lastUpdateTimestamp: "2025-05-02T03:37:11Z"

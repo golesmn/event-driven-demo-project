@@ -1,0 +1,16 @@
+
+services:
+  event_demo_db:
+    image: postgres
+    container_name: event_driven_demo_db
+    environment:
+      POSTGRES_USER: eventUser
+      POSTGRES_PASSWORD: eventPassword
+      POSTGRES_DB: eventDb
+    volumes:
+      - postgres_data_event:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data_event:

@@ -2,7 +2,7 @@ apiVersion: fission.io/v1
 kind: MessageQueueTrigger
 metadata:
   creationTimestamp: null
-  name: rabbitmq-test
+  name: kafkatest
 spec:
   contentType: application/json
   cooldownPeriod: 30
@@ -13,13 +13,13 @@ spec:
     type: name
   maxReplicaCount: 100
   maxRetries: 3
-  messageQueueType: rabbitmq
+  messageQueueType: kafka
   metadata:
-    queueName: request-topic
+    bootstrapServers: my-cluster-kafka-bootstrap.kafka.svc.cluster.local:9092
+    consumerGroup: my-group
     topic: request-topic
   minReplicaCount: 0
   mqtkind: keda
   pollingInterval: 5
   respTopic: response-topic
-  secret: keda-rabbitmq-secret
   topic: request-topic

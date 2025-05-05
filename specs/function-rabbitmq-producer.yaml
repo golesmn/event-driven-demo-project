@@ -1,14 +1,14 @@
 include:
 - access_management/*
 kind: ArchiveUploadSpec
-name: access-management-0eQd
+name: access-management-Kz0I
 
 ---
 apiVersion: fission.io/v1
 kind: Package
 metadata:
   creationTimestamp: null
-  name: rabbitmq-producer-508e6a88-443e-49b5-8b0f-8df763812330
+  name: rabbitmq-producer-8e793674-e237-42c6-8419-fad1521db8e9
 spec:
   deployment:
     checksum: {}
@@ -18,10 +18,10 @@ spec:
   source:
     checksum: {}
     type: url
-    url: archive://access-management-0eQd
+    url: archive://access-management-Kz0I
 status:
   buildstatus: pending
-  lastUpdateTimestamp: "2025-04-29T07:53:58Z"
+  lastUpdateTimestamp: "2025-05-02T03:38:09Z"
 
 ---
 apiVersion: fission.io/v1
@@ -47,7 +47,7 @@ spec:
   package:
     functionName: main.main
     packageref:
-      name: rabbitmq-producer-508e6a88-443e-49b5-8b0f-8df763812330
+      name: rabbitmq-producer-8e793674-e237-42c6-8419-fad1521db8e9
       namespace: ""
   requestsPerPod: 1
   resources: {}
