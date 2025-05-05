@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 
-from commands.create_user import CreateUser
+from access_management.application.commands.create_user import CreateUser
+from shared.abstractions.commands.handler import CommandHandler
+from shared.abstractions.events.handler import EventHandler
 
 
 @dataclass
@@ -10,7 +12,6 @@ class User:
     age: int
 
 
-class UserCreationHandler:
-    @classmethod
-    def handle(cls, command: CreateUser):
+class UserCreationHandler(CommandHandler):
+    def handle(self, command: CreateUser):
         return command.__dict__

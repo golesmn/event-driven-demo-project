@@ -1,14 +1,14 @@
 include:
-- access_management/*
+- access_management_pkg/*
 kind: ArchiveUploadSpec
-name: access-management-Kz0I
+name: access-management-pkg-EsPL
 
 ---
 apiVersion: fission.io/v1
 kind: Package
 metadata:
   creationTimestamp: null
-  name: rabbitmq-producer-8e793674-e237-42c6-8419-fad1521db8e9
+  name: accessmanagement-consumer-48f9a9a5-1dae-4934-a3e1-16231e503b9b
 spec:
   deployment:
     checksum: {}
@@ -18,17 +18,17 @@ spec:
   source:
     checksum: {}
     type: url
-    url: archive://access-management-Kz0I
+    url: archive://access-management-pkg-EsPL
 status:
   buildstatus: pending
-  lastUpdateTimestamp: "2025-05-02T03:38:09Z"
+  lastUpdateTimestamp: "2025-05-05T07:14:48Z"
 
 ---
 apiVersion: fission.io/v1
 kind: Function
 metadata:
   creationTimestamp: null
-  name: rabbitmq-producer
+  name: accessmanagement-consumer
 spec:
   InvokeStrategy:
     ExecutionStrategy:
@@ -45,9 +45,9 @@ spec:
   functionTimeout: 60
   idletimeout: 120
   package:
-    functionName: main.main
+    functionName: access_management.main.consumer
     packageref:
-      name: rabbitmq-producer-8e793674-e237-42c6-8419-fad1521db8e9
+      name: accessmanagement-consumer-48f9a9a5-1dae-4934-a3e1-16231e503b9b
       namespace: ""
   requestsPerPod: 1
   resources: {}

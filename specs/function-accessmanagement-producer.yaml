@@ -1,0 +1,53 @@
+include:
+- access_management_pkg/*
+kind: ArchiveUploadSpec
+name: access-management-pkg-X4Pd
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: accessmanagement-producer-fb9fdd30-7b39-409d-b5b3-dc3711139439
+spec:
+  deployment:
+    checksum: {}
+  environment:
+    name: python
+    namespace: ""
+  source:
+    checksum: {}
+    type: url
+    url: archive://access-management-pkg-X4Pd
+status:
+  buildstatus: pending
+  lastUpdateTimestamp: "2025-05-05T06:51:38Z"
+
+---
+apiVersion: fission.io/v1
+kind: Function
+metadata:
+  creationTimestamp: null
+  name: accessmanagement-producer
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+      MaxScale: 0
+      MinScale: 0
+      SpecializationTimeout: 120
+      TargetCPUPercent: 0
+    StrategyType: execution
+  concurrency: 500
+  environment:
+    name: python
+    namespace: ""
+  functionTimeout: 60
+  idletimeout: 120
+  package:
+    functionName: access_management.main.main
+    packageref:
+      name: accessmanagement-producer-fb9fdd30-7b39-409d-b5b3-dc3711139439
+      namespace: ""
+  requestsPerPod: 1
+  resources: {}
