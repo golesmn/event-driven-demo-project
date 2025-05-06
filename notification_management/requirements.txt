@@ -1,1 +1,4 @@
 flask
+kafka-python
+SQLAlchemy
+psycopg2-binary

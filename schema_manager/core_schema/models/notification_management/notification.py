@@ -7,3 +7,5 @@ class Notification(models.Model):
     type = models.CharField(choices=(
         ("sms", "SMS"),("push", "PUSH")), null=True, blank=True)
 
+    class Meta:
+        db_table = "notifications"
